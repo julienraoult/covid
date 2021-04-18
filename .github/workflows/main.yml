@@ -45,9 +45,9 @@ jobs:
       - name: Run a multi-line script
         run: |
           echo Add other actions to build,
-          python covid.py > log.txt
+          python covid.py >> log.txt
       - name: Upload hello world file
         uses: actions/upload-artifact@v1
         with:
-          name: log
+          name: log.zip
           path: log.txt
