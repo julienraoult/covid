@@ -50,7 +50,7 @@ jobs:
       - name: Run a multi-line script
         run: |
           echo Add other actions to build,
-          python covid.py >> log/log.txt
+          python covid.py >> log.txt
       - name: Upload hello world file
         uses: actions/upload-artifact@v2
         with:
