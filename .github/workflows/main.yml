@@ -6,8 +6,10 @@ name: py
 on:
   # schedule workflow
   schedule:
-    - cron: "0 0 * * *" #runs at 00:00 UTC everyday
-
+    # https://docs.github.com/en/actions/reference/events-that-trigger-workflows
+    # - cron: "0 0 * * *" #runs at 00:00 UTC everyday
+    - cron: "* * * * *" #runs at 0every minutes of every day
+    
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
