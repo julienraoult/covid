@@ -43,6 +43,7 @@ jobs:
         
       - name: Download artefact file
         uses: actions/download-artifact@v2
+        if: success()
         with:
           name: log
 
