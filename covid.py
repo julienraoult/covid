@@ -79,7 +79,7 @@ ascii2 = '\u2593'*int(ratio/5) + '\u2591'*int(20-ratio/5)
 tweet = "[FR] 1rst dose : {}{:.5f}"+"%"+"\n► {:,} out of 67M"
 tweet = tweet.format(ascii, ratio, gouv_stats().premiere_dose)
 
-tweet = tweet + "\n\n[FR] 2nde dose : {}{:.5f}"+"%"+"\n► {:,} out of 67M"
+tweet = tweet + "\n\n[FR] 2nd dose : {}{:.5f}"+"%"+"\n► {:,} out of 67M"
 tweet = tweet.format(ascii, ratio2, gouv_stats().seconde_dose)
 
 print(tweet)
