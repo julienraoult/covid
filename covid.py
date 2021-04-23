@@ -72,7 +72,7 @@ ratio = 100 * gouv_stats().premiere_dose / PEOPLE_NB['french']
 ascii = '\u2593'*int(ratio/5) + '\u2591'*int(20-ratio/5)
 
 ratio2 = 100 * gouv_stats().seconde_dose / PEOPLE_NB['french']
-ascii2 = '\u2593'*int(ratio/5) + '\u2591'*int(20-ratio/5)
+ascii2 = '\u2593'*int(ratio2/5) + '\u2591'*int(20-ratio2/5)
 
 #print(gouv_stats().premiere_dose)
 
