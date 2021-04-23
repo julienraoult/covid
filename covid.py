@@ -1,3 +1,5 @@
+#inspired from https://python-guide-pt-br.readthedocs.io/fr/latest/scenarios/scrape.html
+
 from collections import namedtuple
 
 import csv
@@ -6,6 +8,15 @@ import json
 
 from lxml import html  # type: ignore
 from datetime import datetime
+
+from config import *
+import tweepy
+
+auth = tweepy.OAuthHandler(TWITTER_CONSUMER_KEY, TWITTER_CONSUMER_SECRET)
+auth.set_access_token(TWITTER_ACCESS_TOKEN, TWITTER_ACCESS_TOKEN_SECRET)
+api = tweepy.API(auth, wait_on_rate_limit=True, wait_on_rate_limit_notify=True)
+
+# https://stackoverflow.com/questions/37248958/tweepy-wait-on-rate-limit-not-working
 
 covid_data = namedtuple("covid_data", "cases deaths recovered")
 
@@ -44,9 +55,33 @@ now = datetime.now()
 timestamp = datetime.timestamp(now)
 timestamp = datetime.fromtimestamp(timestamp)
 
-print("timestamp = {}".format(timestamp))
+# print("timestamp = {}".format(timestamp))
 
+# log stats
 with open('covid_stats.csv', 'a', newline='') as file:
     writer = csv.writer(file)
     value = (timestamp,) + gouv_stats()[:2]
     writer.writerow(value)
+
+# Tweet
+print("--- Tweet ----")
+
+PEOPLE_NB = {'french': 67063703}
+
+ratio = 100 * gouv_stats().premiere_dose / PEOPLE_NB['french']
+ascii = '\u2593'*int(ratio/5) + '\u2591'*int(20-ratio/5)
+
+ratio2 = 100 * gouv_stats().seconde_dose / PEOPLE_NB['french']
+ascii2 = '\u2593'*int(ratio/5) + '\u2591'*int(20-ratio/5)
+
+#print(gouv_stats().premiere_dose)
+
+tweet = "[FR] 1rst dose : {}{:.5f}"+"%"+"\n► {:,} out of 67M"
+tweet = tweet.format(ascii, ratio, gouv_stats().premiere_dose)
+
+tweet = tweet + "\n\n[FR] 2nde dose : {}{:.5f}"+"%"+"\n► {:,} out of 67M"
+tweet = tweet.format(ascii, ratio2, gouv_stats().seconde_dose)
+
+print(tweet)
+
+api.update_status(tweet)
