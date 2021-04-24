@@ -52,7 +52,7 @@ jobs:
       - name: Run script covid.py
         run: |
           echo Script in action...
-          python covid.py >> log.txt
+          TWITTER_CONSUMER_KEY: ${{ secrets.TWITTER_CONSUMER_KEY }} python covid.py >> log.txt
         env: 
           TWITTER_CONSUMER_KEY: ${{ secrets.TWITTER_CONSUMER_KEY }}
           TWITTER_CONSUMER_SECRET: ${{ secrets.TWITTER_CONSUMER_SECRET }}
