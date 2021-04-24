@@ -90,4 +90,4 @@ tweet = tweet.format(ascii, ratio2, gouv_stats().seconde_dose)
 
 print(tweet)
 
-api.update_status(tweet)
+#api.update_status(tweet)
