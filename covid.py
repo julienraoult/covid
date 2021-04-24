@@ -1,5 +1,3 @@
-#inspired from https://python-guide-pt-br.readthedocs.io/fr/latest/scenarios/scrape.html
-
 from collections import namedtuple
 
 import csv
@@ -9,7 +7,7 @@ import json
 from lxml import html  # type: ignore
 from datetime import datetime
 
-from config import *
+#from config import *
 import tweepy
 
 auth = tweepy.OAuthHandler(TWITTER_CONSUMER_KEY, TWITTER_CONSUMER_SECRET)
