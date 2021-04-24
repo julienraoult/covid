@@ -1,6 +1,6 @@
 # This is a basic workflow to help you get started with Actions
 
-name: py
+name: covid
 
 # Controls when the action will run. 
 on:
@@ -22,7 +22,7 @@ jobs:
     runs-on: ubuntu-latest
 
     #define environnemnt for pass variable
-    environment: CI
+    environment: Token
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
