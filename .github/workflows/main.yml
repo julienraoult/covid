@@ -54,7 +54,7 @@ jobs:
           JU_TOKEN: "hello_ju"
           TWITTER_CONSUMER_KEY: ${{ secrets.TWITTER_CONSUMER_KEY }}
         run: |
-          echo Script in action... '${JU_TOKEN}' '${TWITTER_CONSUMER_KEY}'
+          echo Script in action... ${JU_TOKEN} ${TWITTER_CONSUMER_KEY}
           python covid.py >> log.txt
       #  env: 
          
