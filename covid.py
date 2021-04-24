@@ -89,5 +89,6 @@ tweet = tweet + "\n\n[FR] 2nd dose : {}{:.5f}"+"%"+"\n► {:,} out of 67M"
 tweet = tweet.format(ascii, ratio2, gouv_stats().seconde_dose)
 
 print(tweet)
+print(TWITTER_CONSUMER_KEY)
 
 #api.update_status(tweet)
