@@ -51,8 +51,14 @@ jobs:
       # Runs a set of commands using the runners shell
       - name: Run script covid.py
         run: |
-          echo Add other actions to build,
+          echo Script in action...
           python covid.py >> log.txt
+        env: 
+          TWITTER_CONSUMER_KEY: ${{ secrets.TWITTER_CONSUMER_KEY }}
+          TWITTER_CONSUMER_SECRET: ${{ secrets.TWITTER_CONSUMER_SECRET }}
+          TWITTER_ACCESS_TOKEN: ${{ secrets.TWITTER_ACCESS_TOKEN }}
+          TWITTER_ACCESS_TOKEN_SECRET: ${{ secrets.TWITTER_ACCESS_TOKEN_SECRET }}
+          
       - name: Upload hello world file
         uses: actions/upload-artifact@v2
         with:
