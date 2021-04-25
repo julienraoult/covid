@@ -86,7 +86,7 @@ tweet = "[FR] 1rst dose : {}{:.5f}"+"%"+"\n► {:,} out of 67M"
 tweet = tweet.format(ascii, ratio, gouv_stats().premiere_dose)
 
 tweet = tweet + "\n\n[FR] 2nd dose : {}{:.5f}"+"%"+"\n► {:,} out of 67M"
-tweet = tweet.format(ascii, ratio2, gouv_stats().seconde_dose)
+tweet = tweet.format(ascii2, ratio2, gouv_stats().seconde_dose)
 
 print(tweet)
 
