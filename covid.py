@@ -87,4 +87,4 @@ if __name__ == "__main__":
 
     print(tweet)
 
-    #api.update_status(tweet)
+    api.update_status(tweet)
