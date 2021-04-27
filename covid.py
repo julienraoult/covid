@@ -1,4 +1,3 @@
-from collections import namedtuple
 
 import csv
 import requests
@@ -6,6 +5,7 @@ import json
 import tweepy
 import os
 
+from collections import namedtuple
 from lxml import html  # type: ignore
 from datetime import datetime
 
@@ -53,41 +53,38 @@ def gouv_stats(url : str = "https://raw.githubusercontent.com/rozierguillaume/va
     data_json = json.loads(requests.get(url).text)
 #    print(data_json)
 
-    return gouv_data(data_json['n_dose1_cumsum'][-1], data_json['n_dose2_cumsum'][-1])
+#    return gouv_data(data_json['n_dose1_cumsum'][-1], data_json['n_dose2_cumsum'][-1])
+    return gouv_data(data_json['n_cum_dose1'][-1], data_json['n_cum_complet'][-1])
 
-print(gouv_stats())
+if __name__ == "__main__":
+    now = datetime.now()
+    timestamp = datetime.timestamp(now)
+    timestamp = datetime.fromtimestamp(timestamp)
 
-now = datetime.now()
-timestamp = datetime.timestamp(now)
-timestamp = datetime.fromtimestamp(timestamp)
+    # print("timestamp = {}".format(timestamp))
 
-# print("timestamp = {}".format(timestamp))
+    # log stats
+    with open('covid_stats.csv', 'a', newline='') as file:
+        writer = csv.writer(file)
+        value = (timestamp,) + gouv_stats()[:2]
+        writer.writerow(value)
 
-# log stats
-with open('covid_stats.csv', 'a', newline='') as file:
-    writer = csv.writer(file)
-    value = (timestamp,) + gouv_stats()[:2]
-    writer.writerow(value)
+    PEOPLE_NB = {'french': 67063703}
+    
+    ratio = 100 * gouv_stats().premiere_dose / PEOPLE_NB['french']
+    ascii = '\u2593'*int(ratio/5) + '\u2591'*int(20-ratio/5)
 
-# Tweet
-print("--- Tweet ----")
+    ratio2 = 100 * gouv_stats().seconde_dose / PEOPLE_NB['french']
+    ascii2 = '\u2593'*int(ratio2/5) + '\u2591'*int(20-ratio2/5)
 
-PEOPLE_NB = {'french': 67063703}
+    #print(gouv_stats().premiere_dose)
 
-ratio = 100 * gouv_stats().premiere_dose / PEOPLE_NB['french']
-ascii = '\u2593'*int(ratio/5) + '\u2591'*int(20-ratio/5)
+    tweet = "#covid #covid19 #vaccin #ViteMaDoseDeVaccin\n"
+    tweet = tweet + "[FR] 1st dose : {}{:.5f}"+"%"+"\n► {:,} out of 67M"
+    tweet = tweet.format(ascii, ratio, gouv_stats().premiere_dose)
+    tweet = tweet + "\n\n[FR] 2nd dose : {}{:.5f}"+"%"+"\n► {:,} out of 67M"
+    tweet = tweet.format(ascii2, ratio2, gouv_stats().seconde_dose)
 
-ratio2 = 100 * gouv_stats().seconde_dose / PEOPLE_NB['french']
-ascii2 = '\u2593'*int(ratio2/5) + '\u2591'*int(20-ratio2/5)
+    print(tweet)
 
-#print(gouv_stats().premiere_dose)
-
-tweet = "[FR] 1st dose : {}{:.5f}"+"%"+"\n► {:,} out of 67M"
-tweet = tweet.format(ascii, ratio, gouv_stats().premiere_dose)
-
-tweet = tweet + "\n\n[FR] 2nd dose : {}{:.5f}"+"%"+"\n► {:,} out of 67M"
-tweet = tweet.format(ascii2, ratio2, gouv_stats().seconde_dose)
-
-print(tweet)
-
-api.update_status(tweet)
+    #api.update_status(tweet)
