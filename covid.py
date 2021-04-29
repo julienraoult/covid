@@ -79,7 +79,7 @@ if __name__ == "__main__":
 
     #print(gouv_stats().premiere_dose)
 
-    tweet = "#covid #covid19 #vaccin #ViteMaDoseDeVaccin\n"
+    tweet = "#covid #covid19 #vaccin #VaccinationCovid #ViteMaDoseDeVaccin\n"
     tweet = tweet + "[FR] 1st dose : {} {:.5f}"+"%"+"\n► {:,} out of 67M"
     tweet = tweet.format(ascii, ratio, gouv_stats().premiere_dose)
     tweet = tweet + "\n\n[FR] 2nd dose : {} {:.5f}"+"%"+"\n► {:,} out of 67M"
