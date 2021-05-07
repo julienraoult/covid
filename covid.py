@@ -85,13 +85,13 @@ if __name__ == "__main__":
     #print(gouv_stats().premiere_dose)
 
     tweet  = "#covid #covid19 #vaccin #ViteMaDoseDeVaccin\n"
-    tweet += "[FR] 1st dose : {} {:.5f}"+"%"+"\n► {:,} out of 67M ({:+,}"
-    tweet += " ► still {} days remaing)"
+    tweet += "[FR] 1st dose : {} {:.5f}"+"%"+"\n► {:,} peoples ({:+,}"
+    tweet += " ► rdv in {} days)"
     tweet  = tweet.format(ascii, ratio, gouv_stats()[0].premiere_dose, delta, remain)
-    tweet += "\n\n[FR] 2nd dose : {} {:.5f}"+"%"+"\n► {:,} out of 67M ({:+,}"
-    tweet += " ► still {} days remaing)"
+    tweet += "\n\n[FR] 2nd dose : {} {:.5f}"+"%"+"\n► {:,} peoples ({:+,}"
+    tweet += " ► rdv in {} days)"
     tweet  = tweet.format(ascii2, ratio2, gouv_stats()[0].seconde_dose, delta2, remain2)
 
     print(tweet)
 
-    api.update_status(tweet)
+    #api.update_status(tweet)
