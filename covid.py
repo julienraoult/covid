@@ -84,7 +84,7 @@ if __name__ == "__main__":
 
     #print(gouv_stats().premiere_dose)
 
-    tweet  = "#covid #covid19 #vaccin #ViteMaDoseDeVaccin #Messi #PSGxMESSI #PSG #MessiPSG\n"
+    tweet  = "#covid #covid19 #vaccin #ViteMaDoseDeVaccin #Messi\n"
     tweet += "[FR] 1st dose : {} {:.5f}"+"%"+"\n► {:,} peoples ({:+,}"
     tweet += " ► rdv in {} days)"
     tweet  = tweet.format(ascii, ratio, gouv_stats()[0].premiere_dose, delta, remain)
